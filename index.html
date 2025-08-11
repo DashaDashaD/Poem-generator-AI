@@ -7,8 +7,10 @@
  <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
+      <div class="container">
+        <header>
  <h1>AI poem generator</h1> 
-
+</header>
    <main>
       <form>
         <input
@@ -17,10 +19,11 @@
           autofocus
           required
           autocomplete="off"
+          class="instructions"
         />
-        <input type="submit" />
+        <input type="submit" class="submit-button" />
       </form>
-      <div>
+      <div class="poem">
       Some say the world will end in fire,
       Some say in ice.
         <br />
@@ -44,6 +47,8 @@
         >hosted on Netlify</a
       >.
     </footer>
+        </div>
+
 <script src="src/index.js"></script>
 </body>
 </html>
