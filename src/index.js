@@ -1,11 +1,29 @@
-function generatePoem(event) {
-  event.preventDefault();
+function displayPoem(response) {
+  console.log("poem generated");
 
   new Typewriter("#poem", {
-    strings: "Some say the world will end in fire, Some say in ice",
+    strings: response.data.answer,
     autoStart: true,
     delay: 1,
     cursor: "",
+  });
+}
+
+function generatePoem(event) {
+  event.preventDefault();
+
+  let instructionsInput = document.querySelector("#user-instructions");
+  let apiKey = "0bb94a006ac75c20203ba5cf3b3o40dt";
+  let prompt = `Generate a short English poem about ${instructionsInput.value}`;
+  let context = "You are a romantic Poem expert and love to write short poems. Your mission is to generate a 6 line poem and separate each line with a <br />. Make sure to follow the user instructions. Do not include a title to the poem. Sign the poem with 'SheCodes AI' inside a <strong> element at the end of the poem and NOT at the beginning";
+  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+  console.log("Generating poem");
+  console.log(`Prompt: ${prompt}`);
+  console.log(`Context: ${context}`);
+
+  axios.get(apiUrl).then(displayPoem).catch(function(error) {
+    console.log("Error:", error);
   });
 }
 
